@@ -1,0 +1,6 @@
+POST http://localhost:8080/api/v1/image
+Content-Type: application/json
+
+{
+    "image": "i am here"
+}

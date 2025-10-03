@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from "cors"
 import dbConnect from "./config/dbConfig.js"
+import imageRouter from './routers/imageRoute.js'
 
 const app = express();
 const PORT = process.env.PORT || 8080;
@@ -8,6 +9,9 @@ const PORT = process.env.PORT || 8080;
 //middleware
 app.use(express.json());
 app.use(cors())
+
+//routers
+app.use('/api/v1/image', imageRouter)
 
 //page not found
 app.use((req,res,next) => {
