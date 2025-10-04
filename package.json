@@ -7,11 +7,13 @@
   "license": "MIT",
   "type": "module",
   "dependencies": {
+    "@huggingface/inference": "^4.10.0",
     "bcryptjs": "^3.0.2",
     "cloudinary": "^2.7.0",
     "cors": "^2.8.5",
     "dotenv": "^17.2.2",
     "express": "^5.1.0",
+    "huggingface": "^1.4.0",
     "mongoose": "^8.18.2",
     "multer": "^2.0.2",
     "multer-storage-cloudinary": "^4.0.0",
