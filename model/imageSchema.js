@@ -9,6 +9,8 @@ const imageSchema = new mongoose.Schema({
     type: [Number],
     index: "vector",
   },
+  dims: Number,
+  model: { type: String },
 });
 
 export default mongoose.model("Image", imageSchema);

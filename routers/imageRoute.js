@@ -1,38 +1,20 @@
 import express from "express";
 import upload from "../config/multerConfig.js";
-import { HfInference } from "@huggingface/inference"
-
+import { HfInference } from "@huggingface/inference";
+import { imageUploadCheck } from "../middlewares/imageUploadValidatior.js";
+import { imageUploadController } from "../controller/imageUploadController.js";
 
 const router = express.Router();
 
-router.post("/", upload.array("images", 4), (req, res) => {
-
-    console.log("Files received:", req.files);
-
-  // checking response form cloudinary
-  if (!req.files || req.files.length === 0) {
-    return res.status(400).json({
-      status: "fail",
-      message: "No images were uploaded to Cloudinary",
-    });
-  }
-
-  const imageUrls = req.files.map((file) => file.path);
-  // are all the urls are correct
-  if (imageUrls.some((url) => !url)) {
-    return res.status(500).json({
-      status: "fail",
-      message: "Image upload to Cloudinary failed",
-    });
-  }
-
-  res.json({ status: "success", imageUrls: imageUrls });
-});
-
-
+router.post(
+  "/",
+  upload.single("image"),
+  imageUploadCheck,
+  imageUploadController
+);
 
 // Create Vector embeddings
-const hfKey = process.env.HF_API_KEY
+const hfKey = process.env.HF_API_KEY;
 const hf = new HfInference(hfKey);
 
 async function getEmbeddings(text) {
@@ -72,6 +54,5 @@ router.post("/vectorize", async (req, res) => {
     });
   }
 });
-
 
 export default router;
