@@ -2,6 +2,8 @@ import express from "express";
 import cors from "cors";
 import dbConnect from "./config/dbConfig.js";
 import imageRouter from "./routers/imageRoute.js";
+import { addEmbeddings } from "./model/imageModel.js";
+import { addVectorDescription } from "./utils/addVectorDescription.js";
 
 const app = express();
 const PORT = process.env.PORT || 8080;
@@ -29,3 +31,5 @@ dbConnect()
     });
   })
   .catch((error) => console.log(error));
+
+

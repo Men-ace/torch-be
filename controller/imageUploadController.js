@@ -14,7 +14,10 @@ export const imageUploadController = async (req, res, next) => {
     });
 
     // Run vector description creation asynchronously (non-blocking)
-    addVectorDescription(image);
+     addVectorDescription({
+       _id: image._id,
+       imageUrl: image.imageUrl,
+     }).catch((err) => console.error("Embedding failed:", err));
   } catch (error) {
     next({
       statusCode: 500,
