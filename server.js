@@ -2,9 +2,7 @@ import express from "express";
 import cors from "cors";
 import dbConnect from "./config/dbConfig.js";
 import imageRouter from "./routers/imageRoute.js";
-import { addEmbeddings } from "./model/imageModel.js";
-import { addVectorDescription } from "./utils/addVectorDescription.js";
-
+import searchRouter from "./routers/search.js";
 const app = express();
 const PORT = process.env.PORT || 8080;
 
@@ -14,6 +12,7 @@ app.use(cors());
 
 //routers
 app.use("/api/v1/image", imageRouter);
+app.use("/api/v1/search", searchRouter);
 
 //page not found
 app.use((req, res, next) => {
@@ -31,5 +30,3 @@ dbConnect()
     });
   })
   .catch((error) => console.log(error));
-
-

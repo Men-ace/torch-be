@@ -33,7 +33,7 @@ export const addVectorDescription = async (image) => {
     const id = image._id || image.id;
     const url = normalizeCloudinary(image.imageUrl);
 
-    console.log(`🧠 Generating embedding for image ${id} ...`);
+    console.log(` Generating embedding for image ${id} ...`);
 
     // 1️⃣ Load model
     const extractor = await getExtractor();
@@ -47,11 +47,11 @@ export const addVectorDescription = async (image) => {
 
     // 4️⃣ Save embedding into MongoDB
     const updated = await addEmbeddings(id, vector, dims, MODEL_NAME);
-    console.log(`✅ Vector stored for image ${id} (${dims} dims)`);
+    console.log(`Vector stored for image ${id} (${dims} dims)`);
 
     return updated;
   } catch (err) {
-    console.error("❌ addVectorDescription failed:", err.message);
+    console.error(" addVectorDescription failed:", err.message);
     throw err;
   }
 };
