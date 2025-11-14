@@ -22,6 +22,6 @@
   },
   "scripts": {
     "dev": "nodemon --env-file=.env server.js",
-    "start": "node server.js"
+    "dev:docker": "nodemon server.js"
   }
 }
